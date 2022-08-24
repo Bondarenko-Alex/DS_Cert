@@ -75,7 +75,8 @@ def draw_scatter(site, payload):
     else:
         df = spacex_df
     df = df[(df['Payload Mass (kg)'] >= payload[0]) & (df['Payload Mass (kg)'] <= payload[1])]
-    fig = px.scatter(df, x='Payload Mass (kg)', y="Launch Site", color='class')
+    df['class'] = df['class'].astype('str')
+    fig = px.scatter(df, x='Payload Mass (kg)', y="Launch Site", color='class', symbol='class', color_continuous_scale='rdbu')
     return fig
 
 # Run the app
